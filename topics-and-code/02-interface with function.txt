@@ -1,0 +1,61 @@
+
+Sep 27 2016
+——————————
+
+error1:
+
+Argument of type '{ name: string; }' is not assignable to parameter of type 'Fruit'.
+  Property 'quantity' is missing in type '{ name: string; }'.
+
+———————
+
+interface Fruit { 
+    name: string;
+    quantity: number
+}
+
+function Print(fruit: Fruit) {
+    console.log(`Fruit is ${fruit.name}.`);
+}
+
+let apple = {
+    name: 'Apple',
+    quantity: 3
+}; 
+
+let orange = {
+    name: 'Orange',
+    quantity: 4,
+    extraProp: 'something'
+};
+
+let peach = {
+    name: 'Peach'
+};
+
+// Print(); 
+Print(apple);
+Print(orange); //This doesn’t warns for extra property i.e. extraProp
+Print(peach); //This warns for missing prop, but runs anyway
+
+
+=============================
+function Print(fruit) {
+    console.log("Fruit is " + fruit.name + ".");
+}
+var apple = {
+    name: 'Apple',
+    quantity: 3
+};
+var orange = {
+    name: 'Orange',
+    quantity: 4,
+    extraProp: 'something'
+};
+var peach = {
+    name: 'Peach'
+};
+// Print(); 
+Print(apple);
+Print(orange); //This doesn’t warns for extra property i.e. extraProp
+Print(peach); //This warns for missing prop, but runs anyway

@@ -1,0 +1,65 @@
+
+Sep 27 2016
+——————————
+error1:
+
+Argument of type '{ name: string; quantity: number; extraProp: string; }' is not assignable to parameter of type 'Fruit'.
+  Object literal may only specify known properties, and 'extraProp' does not exist in type 'Fruit'.
+
+
+error2:
+
+Argument of type '{ name: string; }' is not assignable to parameter of type 'Fruit'.
+  Property 'quantity' is missing in type '{ name: string; }'.
+
+————————
+
+interface Fruit { 
+    name: string;
+    quantity: number
+}
+
+class Print {
+    constructor(fruit: Fruit) {
+        console.log(`Fruit is ${fruit.name}.`);
+    }
+}
+
+
+let apple = new Print({
+    name: 'Apple',
+    quantity: 3
+}); 
+
+let orange = new Print({
+    name: 'Orange',
+    quantity: 4,
+    extraProp: 'something' //warns for extra props i.e. extraProp
+});
+
+let peach = new Print({
+    name: 'Peach' //warns missing quantity
+});
+
+
+
+=============================
+var Print = (function () {
+    function Print(fruit) {
+        console.log("Fruit is " + fruit.name + ".");
+    }
+    return Print;
+}());
+var apple = new Print({
+    name: 'Apple',
+    quantity: 3
+});
+var orange = new Print({
+    name: 'Orange',
+    quantity: 4,
+    extraProp: 'something' //warns for extra props i.e. extraProp
+});
+var peach = new Print({
+    name: 'Peach' //warns missing quantity
+});
+

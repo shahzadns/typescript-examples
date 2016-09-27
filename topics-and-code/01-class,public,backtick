@@ -1,0 +1,56 @@
+
+Sep 27 2016
+——————————
+
+class Printer { 
+    quantity: number = 0;
+    constructor(public name: string) { 
+        console.log(`${name} instantiated.`);
+    }
+    add(quantity) { 
+        this.quantity += quantity;
+    }
+    print() {
+        console.log(`There are ${this.quantity} ${this.name}s.`);
+    }
+}
+
+let apple, orange;
+
+apple = new Printer('Apple');
+apple.print();
+apple.add(5);
+apple.print();
+
+orange = new Printer('Orange');
+orange.print();
+orange.add(6);
+orange.print();
+
+
+
+=============================
+
+var Printer = (function () {
+    function Printer(name) {
+        this.name = name;
+        this.quantity = 0;
+        console.log(name + " instantiated.");
+    }
+    Printer.prototype.add = function (quantity) {
+        this.quantity += quantity;
+    };
+    Printer.prototype.print = function () {
+        console.log("There are " + this.quantity + " " + this.name + "s.");
+    };
+    return Printer;
+}());
+var apple, orange;
+apple = new Printer('Apple');
+apple.print();
+apple.add(5);
+apple.print();
+orange = new Printer('Orange');
+orange.print();
+orange.add(6);
+orange.print();
